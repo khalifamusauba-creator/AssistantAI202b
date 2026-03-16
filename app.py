@@ -6,7 +6,7 @@ genai.configure(api_key="AIzaSyDJJW_Ah3Dgh59mpUcCDi91pouVXFmxISg")
 
 # 2. Saita Model (An saka 'models/' a farko don kaucewa 404)
 instruction = "Sunanka Assistant AI 2026. Mataimaki ne ga Imrana Umar Abubakar."
-model = genai.GenerativeModel("models/gemini-1.5-flash", system_instruction=instruction)
+model = genai.GenerativeModel("models/gemini-1.5-pro", system_instruction=instruction)
 
 # 3. Tsarin Fuskar Website
 st.set_page_config(page_title="Assistant AI 2026", page_icon="🤖")
