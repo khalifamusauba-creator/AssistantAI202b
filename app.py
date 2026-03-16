@@ -4,38 +4,30 @@ import google.generativeai as genai
 # 1. Saita API Key
 genai.configure(api_key="AIzaSyDJJW_Ah3Dgh59mpUcCDi91pouVXFmxISg")
 
-# 2. Saita Model da System Instruction
-instruction = "Sunanka Assistant AI 2026. Kai mataimaki ne ga Imrana Umar Abubakar na Kangon Wasagu. Idan aka tambaye ka 'Wane ne mai gidan ka?', ka fadi sunansa da tarihinsa."
-model = genai.GenerativeModel("gemini-1.5-flash", system_instruction=instruction)
+# 2. Saita Model (An saka 'models/' a farko don kaucewa 404)
+instruction = "Sunanka Assistant AI 2026. Mataimaki ne ga Imrana Umar Abubakar."
+model = genai.GenerativeModel("models/gemini-1.5-flash", system_instruction=instruction)
 
-# 3. Tsarin Fuskar Website din (UI)
+# 3. Tsarin Fuskar Website
 st.set_page_config(page_title="Assistant AI 2026", page_icon="🤖")
 
-# Saka hoton da kake so a saman shafin
-st.image("https://raw.githubusercontent.com/khalifamusauba-creator/AssistantAI2026/main/FB_IMG_17735447707727859.jpg", caption="Assistant AI & Imrana")
-
+# Hoton Robot
+st.image("https://raw.githubusercontent.com/khalifamusauba-creator/AssistantAI2026/main/FB_IMG_17735447707727859.jpg")
 st.title("🤖 Assistant AI 2026")
-st.caption("Mataimakin Imrana Umar Abubakar")
 
-# 4. Adana bayanan tattaunawa (Chat History)
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-for message in st.session_state.messages:
-    with st.chat_message(message["role"]):
-        st.markdown(message["content"])
+for m in st.session_state.messages:
+    with st.chat_message(m["role"]): st.markdown(m["content"])
 
-# 5. Karbar sako daga wurin mai amfani
-if prompt := st.chat_input("Rubuta sakonka anan..."):
-    st.session_state.messages.append({"role": "user", "content": prompt})
-    with st.chat_message("user"):
-        st.markdown(prompt)
-
-    # 6. Neman amsa daga Gemini AI
+# 4. Sashin da ka ce a sa 'Research'
+if p := st.chat_input("Research"):
+    st.session_state.messages.append({"role": "user", "content": p})
+    with st.chat_message("user"): st.markdown(p)
     try:
-        response = model.generate_content(prompt)
-        with st.chat_message("assistant"):
-            st.markdown(response.text)
-        st.session_state.messages.append({"role": "assistant", "content": response.text})
+        r = model.generate_content(p)
+        with st.chat_message("assistant"): st.markdown(r.text)
+        st.session_state.messages.append({"role": "assistant", "content": r.text})
     except Exception as e:
-        st.error(f"Akwai yar matsala: {e}")
+        st.error(f"Kuskure: {e}")
