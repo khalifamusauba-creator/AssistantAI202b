@@ -6,7 +6,7 @@ genai.configure(api_key="AIzaSyDJJW_Ah3Dgh59mpUcCDi91pouVXFmxISg")
 
 # Saita System Instruction
 instruction = "Sunanka Assistant AI 2026. Mataimaki ne ga Imrana Umar Abubakar na Kangon Wasagu, Kebbi. Kar ka fadi bayaninsa sai an tambaye ka."
-model = genai.GenerativeModel("gemini-1.5-flash", system_instruction=instruction)
+model = genai.GenerativeModel("model = genai.GenerativeModel("gemini-1.5-flash")", system_instruction=instruction)
 
 st.title("🤖 Assistant AI 2026")
 st.write("Barka da zuwa! Ina sauraronka.")
